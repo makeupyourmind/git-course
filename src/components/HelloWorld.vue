@@ -19,7 +19,7 @@ const onCountClick = () => {
     <button type="button" @click="onCountClick">count is {{ count }}</button>
     <p>
       Edit
-      <code>components/HelloWorld.vue</code> to test HMR
+      <code>components/HelloWorld.vue</code> to test HMR (hot module replacement)
     </p>
   </div>
 
