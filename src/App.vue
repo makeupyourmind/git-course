@@ -1,30 +1,56 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
+
+const props = defineProps({
+  msg: String,
+})
+
+const count = ref(0)
+const title = ref(props.msg)
+
+const onCountClick = () => {
+  count.value = count.value + 1
+}
+
+const onResetClick = () => {
+  count.value = 0
+}
+
+const onTitleChange = (event) => {
+  title.value = event.target.value
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <h1>{{ title }}</h1>
+
+  <div class="card">
+    <button type="button" @click="onCountClick">count is {{ count }}</button>
+    <button type="button" @click="onResetClick">Reset</button>
+    <div>
+      <input v-model="title" placeholder="Change title" />
+    </div>
+    <p>
+      Edit
+      <code>components/HelloWorld.vue</code> to test HMR
+    </p>
   </div>
-  <HelloWorld msg="Hello world" />
+
+  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.read-the-docs {
+  color: #888;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.card {
+  margin: 20px 0;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.card button:nth-child(2) {
+  margin-left: 10px;
+}
+input {
+  margin-top: 10px;
+  padding: 5px;
 }
 </style>
